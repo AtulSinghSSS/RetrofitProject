@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RetrofitProject</string>
+    <string name="msg_improper_response_server">improper response from the server</string>
+    <string name="internet_connection">Please Connect to Internet</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
