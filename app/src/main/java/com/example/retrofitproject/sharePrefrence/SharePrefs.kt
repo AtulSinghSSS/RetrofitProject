@@ -15,6 +15,11 @@ class SharePrefs {
 
         val TOKEN = "Token"
         val PREFERENCE = "retro"
+        var IS_LOGIN = "is_login"
+        var TOKEN_NAME = "token_name"
+        var TOKEN_PASSWORD = "token_password"
+
+
 
         fun getInstance(context: Context): SharePrefs {
             if (sharedPreferences == null) {

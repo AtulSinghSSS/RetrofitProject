@@ -31,7 +31,8 @@
                 android:id="@+id/edtUserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter User  Name"
+                android:hint="Enter Mobile Number"
+               android:maxLength="10"
                 android:textColor="@color/teal_200" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -54,6 +55,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Enter Password"
                 android:inputType="textPassword"
+                android:maxLength="6"
                 android:textColor="@color/teal_200">
 
             </com.google.android.material.textfield.TextInputEditText>
