@@ -4,4 +4,9 @@
     <string name="internet_connection">Please Connect to Internet</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="valid_empty_mobile_number">Please Enter Mobile Number</string>
+    <string name="valid_mobile_number">Please Enter Valid Mobile Number</string>
+    <string name="valid_empty_password">Please Enter password</string>
+    <string name="valid_password">Please enter a valid password</string>
 </resources>

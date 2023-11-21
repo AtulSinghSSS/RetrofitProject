@@ -2,6 +2,7 @@ package com.example.retrofitproject.mainActivity
 
 import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -25,14 +26,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var btn:Button
     lateinit var loginViewModel: LoginViewModel
     lateinit var sharePrefs: SharePrefs
+    lateinit var contaxt:Context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        text1=findViewById(R.id.text1)
-
         val appRepository = AppRepository(applicationContext)
-
-
 
 
         loginViewModel = ViewModelProvider(
@@ -40,104 +38,116 @@ class MainActivity : AppCompatActivity() {
             AuthViewModelFactory(application, appRepository)
         ).get(LoginViewModel::class.java)
 
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //        loginViewModel.callToken("eve.holt@reqres.in","cityslicka")
 //     loginViewModel.getOtp(OtpRequest("9522392801", "", BuildConfig.VERSION_NAME, Build.VERSION.RELEASE, Build.MODEL, Utils.getDeviceUniqueID(this)!!))
 //        loginViewModel.getVesionData()
-        loginViewModel.getOtp1("9109900586")
+//loginViewModel.getOtp1("9109900586")
 
-
-
-        observe(loginViewModel.tokenData, ::handleResult)
-        observe(loginViewModel.getOtp,::handleOtp)
-        observe(loginViewModel.versionData,::handleVersion)
-        observe(loginViewModel.getOtp1,::handlegetOtp1)
-
-    }
-
-     fun handleResult(it: Response<LoginTokenResponse>) {
-        when (it) {
-            is Response.Loading -> {
-            }
-            is Response.Success -> {
-                it.data?.let {
-                    // hideProgressDialog()
-
-                    text1.setText(it.token)
-
-
-                    SharePrefs.getInstance(applicationContext)!!.putString(SharePrefs.TOKEN,it.token)
-
-                    println("LoginResponse::" + Gson().toJson(it))
-
-
-                  var value= SharePrefs.getInstance(applicationContext)!!.getString(SharePrefs.TOKEN)
-                   SharePrefs.getInstance(applicationContext)!!.upDate(SharePrefs.TOKEN,"atul")
-                    var getupdateValue= SharePrefs.getInstance(applicationContext)!!.getString(
-                        SharePrefs.TOKEN)
-                    println("value="+value)
-                    println("update="+getupdateValue)
-
-                   SharePrefs.getInstance(applicationContext)!!.delete(SharePrefs.TOKEN)
-                    var delete= SharePrefs.getInstance(applicationContext)!!.getString(SharePrefs.TOKEN)
-                    println("Delete="+delete)
-
-                }
-            }
-            is Response.Error -> {
-                Log.e(TAG, "onCreate:565555555 " )
-            }
-        }
-    }
-
-
-    fun handleOtp(it: Response<JsonElement>){
-        when (it) {
-            is Response.Loading -> {
-            }
-            is Response.Success -> {
-                it.data?.let {
-                    // hideProgressDialog()
-                    println("LoginResponse::" + Gson().toJson(it))
-
-                }
-            }
-            is Response.Error -> {
-                Log.e(TAG, "onCreate:565555555 " )
-            }
-        }
-    }
-
-    fun handleVersion(it: Response<JsonElement>){
-        when (it) {
-            is Response.Loading -> {
-            }
-            is Response.Success -> {
-                it.data?.let {
-                    // hideProgressDialog()
-                    println("LoginResponse1::" + Gson().toJson(it))
-
-                }
-            }
-            is Response.Error -> {
-                Log.e(TAG, "onCreate:565555555 " )
-            }
-        }
-    }
-
-    fun handlegetOtp1(it: Response<JsonElement>){
-        when (it) {
-            is Response.Loading -> {
-            }
-            is Response.Success -> {
-                it.data?.let {
-                    // hideProgressDialog()
-                    println("LoginResponse1::" + Gson().toJson(it))
-
-                }
-            }
-            is Response.Error -> {
-                Log.e(TAG, "onCreate:565555555 " )
-            }
-        }
-    }
-}
+//observe(loginViewModel.tokenData, ::handleResult)
+//        observe(loginViewModel.getOtp,::handleOtp)
+//        observe(loginViewModel.versionData,::handleVersion)
+//        observe(loginViewModel.getOtp1,::handlegetOtp1)
+//
+//fun handleResult(it: Response<LoginTokenResponse>) {
+//        when (it) {
+//            is Response.Loading -> {
+//            }
+//            is Response.Success -> {
+//                it.data?.let {
+//                    // hideProgressDialog()
+//
+//                    text1.setText(it.token)
+//
+//
+//                    SharePrefs.getInstance(applicationContext)!!.putString(SharePrefs.TOKEN,it.token)
+//
+//                    println("LoginResponse::" + Gson().toJson(it))
+//
+//
+//                  var value= SharePrefs.getInstance(applicationContext)!!.getString(SharePrefs.TOKEN)
+//                   SharePrefs.getInstance(applicationContext)!!.upDate(SharePrefs.TOKEN,"atul")
+//                    var getupdateValue= SharePrefs.getInstance(applicationContext)!!.getString(
+//                        SharePrefs.TOKEN)
+//                    println("value="+value)
+//                    println("update="+getupdateValue)
+//
+//                   SharePrefs.getInstance(applicationContext)!!.delete(SharePrefs.TOKEN)
+//                    var delete= SharePrefs.getInstance(applicationContext)!!.getString(SharePrefs.TOKEN)
+//                    println("Delete="+delete)
+//
+//                }
+//            }
+//            is Response.Error -> {
+//                Log.e(TAG, "onCreate:565555555 " )
+//            }
+//        }
+//    }
+//
+//
+//    fun handleOtp(it: Response<JsonElement>){
+//        when (it) {
+//            is Response.Loading -> {
+//            }
+//            is Response.Success -> {
+//                it.data?.let {
+//                    // hideProgressDialog()
+//                    println("LoginResponse::" + Gson().toJson(it))
+//
+//                }
+//            }
+//            is Response.Error -> {
+//                Log.e(TAG, "onCreate:565555555 " )
+//            }
+//        }
+//    }
+//
+//    fun handleVersion(it: Response<JsonElement>){
+//        when (it) {
+//            is Response.Loading -> {
+//            }
+//            is Response.Success -> {
+//                it.data?.let {
+//                    // hideProgressDialog()
+//                    println("LoginResponse1::" + Gson().toJson(it))
+//
+//                }
+//            }
+//            is Response.Error -> {
+//                Log.e(TAG, "onCreate:565555555 " )
+//            }
+//        }
+//    }
+//
+//    fun handlegetOtp1(it: Response<JsonElement>){
+//        when (it) {
+//            is Response.Loading -> {
+//            }
+//            is Response.Success -> {
+//                it.data?.let {
+//                    // hideProgressDialog()
+//                    println("LoginResponse1::" + Gson().toJson(it))
+//
+//                }
+//            }
+//            is Response.Error -> {
+//                Log.e(TAG, "onCreate:565555555 " )
+//            }
+//        }
+//    }

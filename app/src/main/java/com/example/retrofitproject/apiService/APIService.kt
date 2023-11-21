@@ -1,7 +1,7 @@
 package com.example.retrofitproject.apiService
 
-import com.example.retrofitproject.LoginTokenResponse
-import com.example.retrofitproject.OtpRequest
+import com.example.retrofitproject.*
+import com.example.retrofitproject.splashScreen.AppVersionModel
 import com.google.gson.JsonElement
 import retrofit2.Response
 import retrofit2.http.*
@@ -11,11 +11,34 @@ interface APIService {
 
 
     @GET("api/appVersion/salesdata")
-    suspend fun getAppversion(): Response<ArrayList<JsonElement>>
+    suspend fun getAppversion(): Response<ArrayList<AppVersionModel>>
+
+    @GET("/api/SalesAppLogin")
+    suspend fun doLogin(
+        @Query("mob") mobile: String,
+        @Query("password") password: String,
+        @Query("FcmId") fcmId: String,
+        @Query("CurrentAPKversion") currentAPKversion: String,
+        @Query("PhoneOSversion") phoneOSversion: String,
+        @Query("UserDeviceName") userDeviceName: String,
+        @Query("DeviceId") deviceId: String,
+        @Query("IMEI") iMEI: String
+    ): Response<AuthResponse>
+
+
+
+    @FormUrlEncoded
+    @POST("/token")
+    suspend fun getToken(
+        @Field("grant_type") grant_type: String?,
+        @Field("username") username: String?,
+        @Field("password") password: String?
+    ): Response<TokenResponse>
+
 
     @FormUrlEncoded
     @POST("/api/login")
-    suspend fun getToken(
+    suspend fun getToken1(
         @Field("email") username: String?,
         @Field("password") password: String?
     ): Response<LoginTokenResponse>
