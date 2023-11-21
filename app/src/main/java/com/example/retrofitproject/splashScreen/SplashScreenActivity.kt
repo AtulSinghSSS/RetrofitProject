@@ -112,7 +112,7 @@ class SplashScreenActivity : AppCompatActivity() {
                         }
 
                     } else {
-                        Log.e(TAG, "checkVersionUpdate: 1.84")
+                        Log.e(TAG, "checkVersionUpdate: $appVersion")
                     }
                 }
             }
