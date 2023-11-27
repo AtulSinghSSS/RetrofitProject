@@ -23,7 +23,6 @@ class SplashViewModel(app: Application, private val repository: AppRepository):A
     private val tokenLiveData = SingleLiveEvent<Response<TokenResponse>>()
     val tokenData: SingleLiveEvent<Response<TokenResponse>>
         get() = tokenLiveData
-
     private val _employeesLiveData = SingleLiveEvent<Response<employeesResponsModel>>()
     val employeesLiveData: SingleLiveEvent<Response<employeesResponsModel>>
         get() = _employeesLiveData
@@ -80,6 +79,5 @@ class SplashViewModel(app: Application, private val repository: AppRepository):A
                 _employeesLiveData.postValue(Response.Error(getApplication<Application>().getString(R.string.internet_connection)))
             }
         }
-
 
 }

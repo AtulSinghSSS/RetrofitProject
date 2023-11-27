@@ -41,8 +41,12 @@ class SplashScreenActivity : AppCompatActivity() {
             this,
             SplashViewModelFactory(application, AppRepository(applicationContext))
         ).get(SplashViewModel::class.java)
+
       //  observe(splashViewModel.versionData, ::handleResult)
         observe(splashViewModel.employeesLiveData, ::employeesResult)
+
+        observe(splashViewModel.versionData, ::handleResult)
+
 
     }
 
@@ -65,7 +69,8 @@ class SplashScreenActivity : AppCompatActivity() {
         Handler().postDelayed({
 
          //   splashViewModel.callAppVersion()
-            splashViewModel.employees()
+
+        //    splashViewModel.callAppVersion()
 //            startActivity(Intent(applicationContext, MainActivity::class.java))
 //            finish()
         }, 2000)
@@ -89,6 +94,7 @@ class SplashScreenActivity : AppCompatActivity() {
         }
     }
 
+
     private fun employeesResult(it: Response<employeesResponsModel>) {
         when (it) {
             is Response.Loading -> {
@@ -104,7 +110,6 @@ class SplashScreenActivity : AppCompatActivity() {
             }
         }
     }
-
 
     fun checkVersionUpdate(versionList: ArrayList<AppVersionModel>) {
         try {
